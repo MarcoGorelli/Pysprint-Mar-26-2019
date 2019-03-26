@@ -1,5 +1,4 @@
 pytest
 Flask-API
 flake8
-pickle
 sklearn
