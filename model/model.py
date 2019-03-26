@@ -1,10 +1,13 @@
 import pickle
+import os
 
 
 class Model:
 
     def __init__(self):
-        with open('model.pickle', 'rb') as f:
+        with open('{}/model.pickle'.format(
+                os.path.dirname(os.path.abspath(__file__))), 'rb') as f:
+
             self._model = pickle.load(f)
 
     def list_params(self):
