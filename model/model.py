@@ -22,4 +22,3 @@ class Model:
 
     def predict(self, lst):
         return self._model.predict(np.array([lst, ]))
-
