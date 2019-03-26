@@ -1,10 +1,11 @@
 import pickle
+import numpy as np
 
 
 class Model:
 
     def __init__(self):
-        with open('model.pickle', 'rb') as f:
+        with open('model/model.pickle', 'rb') as f:
             self._model = pickle.load(f)
 
     def list_params(self):
@@ -19,11 +20,6 @@ class Model:
 
         return params
 
-    def predict(self, data):
-        assert all(data.columns == self.list_params())
+    def predict(self, lst):
+        return self._model.predict(np.array([lst, ]))
 
-        self._model.predict(data)
-
-    def _process(self):
-
-        pass
