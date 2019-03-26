@@ -2,3 +2,4 @@ language: python
 
 script:
   - pytest
+  - flake8
