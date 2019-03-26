@@ -1,15 +1,14 @@
 
-import json
 from flask import request, abort
 from flask_api import FlaskAPI
-from model import model
+from model.model import Model
 
 # from . import Model, allowed_values
 
 
 app = FlaskAPI(__name__)
-model = model.Model()
-allowed_params = set(model.list_params().keys())
+model_a = Model()
+allowed_params = set(model_a.list_params().keys())
 
 
 @app.route("/titanic", methods=['GET', 'POST'])
@@ -22,7 +21,11 @@ def titanic():
             if set(data.keys()) != allowed_params:
                 abort(403)
             else:
-                return model.predict(data)
+                result = model_a.predict(list(data.values()))[0]
+                if result == 1:
+                    return 'Survived'
+                else:
+                    return 'Dead'
     else:
         abort(418)
 
